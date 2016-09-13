@@ -1,5 +1,4 @@
-<div class="showtime">
-    <h3>{{ showtime.movie }}</h3>
-    <p class="version">{{ showtime.version }}</p>
-    <p class="time">{{ showtime.time }}</p>
-<div>
+<span class="showtime" data-theater-key="{{ showtime.theater.key }}" title="{{ showtime.theater.name }}">
+    <span class="time">{{ showtime.time }}</span>
+    <span class="version">{{ showtime.version }}</span>
+</span>

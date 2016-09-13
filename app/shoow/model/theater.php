@@ -5,16 +5,22 @@ namespace shoow\model;
 class Theater
 {
 
+    private static $counter = 1;
+
+    private $key;
     private $id;
     private $name;
     private $address;
-    private $movies = array();
 
-    function __construct($id, $name, $address, $movies) {
+    function __construct($id, $name, $address) {
+        $this->key     = self::$counter++;
         $this->id      = $id;
         $this->name    = $name;
         $this->address = $address;
-        $this->movies  = $movies;
+    }
+
+    public function getKey() {
+        return $this->key;
     }
 
     public function getId() {
@@ -29,18 +35,6 @@ class Theater
         return $this->address;
     }
 
-    public function getMovies() {
-        return $this->movies;
-    }
-
-    private function generateTimeline() {
-        $html = '';
-        foreach ($this->movies as $movie) {
-            $html .= $movie->render(false) . PHP_EOL;
-        }
-        return $html;
-    }
-
     public function render($output = true) {
         ob_start();
         include 'template/theater.tmpl';
@@ -48,10 +42,8 @@ class Theater
         ob_end_clean();
 
         $data = array(
-            'theater.id'       => $this->id,
-            'theater.name'     => $this->name,
-            'theater.address'  => $this->address,
-            'theater.timeline' => $this->generateTimeline()
+            'theater.key'  => $this->getKey(),
+            'theater.name' => $this->getName()
         );
         foreach ($data as $key => $value) {
             $rendering = preg_replace('/\{\{\s*'. $key .'\s*\}\}/', $value, $rendering);

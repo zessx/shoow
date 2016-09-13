@@ -5,14 +5,19 @@ namespace shoow\model;
 class Showtime
 {
 
-    private $movie   = null;
-    private $version = '';
-    private $time    = '';
+    private $theater;
+    private $movie;
+    private $version;
+    private $time;
 
-    function __construct($movie, $version, $time) {
-        if ($movie !instanceof Movie) {
+    function __construct($theater, $movie, $version, $time) {
+        if (!($theater instanceof Theater)) {
             throw new \InvalidArgumentException();
         }
+        if (!($movie instanceof Movie)) {
+            throw new \InvalidArgumentException();
+        }
+        $this->theater   = $theater;
         $this->movie   = $movie;
         $this->version = $version;
         $this->time    = $time;
@@ -29,9 +34,10 @@ class Showtime
         ob_end_clean();
 
         $data = array(
-            'showtime.movie'   => $this->movie->getName()
-            'showtime.version' => $this->version
-            'showtime.time'    => $this->time
+            'showtime.theater.key'  => $this->theater->getKey(),
+            'showtime.theater.name' => $this->theater->getName(),
+            'showtime.version'      => $this->version,
+            'showtime.time'         => $this->time
         );
         foreach ($data as $key => $value) {
             $rendering = preg_replace('/\{\{\s*'. $key .'\s*\}\}/', $value, $rendering);

@@ -1,5 +1,14 @@
-<div class="movie" data-id="{{ movie.id }}">
-    <h3>{{ movie.name }}</h3>
-    <p class="info">{{ movie.info }}</p>
-    <p class="showtimes">{{ movie.showtimes }}</p>
-<div>
+<article class="movie" data-movie-id="{{ movie.id }}">
+
+    <header>
+        <h3>{{ movie.name }}</h3>
+        <span class="public">{{ movie.public }}</span>
+        <span class="genre">{{ movie.genre }}</span>
+        <span class="duration">{{ movie.duration }}</span>
+    </header>
+
+    <div class="showtimes">
+        {{ movie.showtimes }}
+    </div>
+
+</article>
