@@ -99,12 +99,13 @@ class SourceParser
             curl_close($curl);
 
             $html = str_get_html($str);
-            $url = null;
-            $url  = $html->find('#b_content img', 0)->src;
-            if ($url) {
-                $url = preg_replace('/&w=\d+/', '&w=160', $url);
-                $url = preg_replace('/&h=\d+/', '&w=215', $url);
-                copy($url, $poster_path);
+            if ($html) {
+                $url = $html->find('#b_content img', 0)->src;
+                if ($url) {
+                    $url = preg_replace('/&w=\d+/', '&w=160', $url);
+                    $url = preg_replace('/&h=\d+/', '&w=215', $url);
+                    copy($url, $poster_path);
+                }
             }
 
             $html->clear();
