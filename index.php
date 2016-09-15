@@ -4,10 +4,7 @@
  * @source: http://stackoverflow.com/a/4897274/1238019
  */
 
-ini_set('include_path', ini_get('include_path') . ':./app/shoow');
-
 require_once('app/autoloader.php');
-require_once('vendor/simplehtmldom/simple_html_dom.php');
 
 use shoow\util\SourceParser;
 
@@ -42,10 +39,11 @@ $data = SourceParser::load('Strasbourg');
 
     <!-- <meta name="theme-color" content="#b3A1bc" /> -->
 
-    <link rel="stylesheet" href="public/app.css">
     <link rel="canonical" href="http://shoow.io">
     <link rel="me" href="https://twitter.com/zessx">
     <!-- <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> -->
+    <link rel="stylesheet" href="/public/app.css">
+    <script src="/public/app.js"></script>
 </head>
 <body>
 

@@ -2,7 +2,7 @@
 var gulp = require('gulp');
 
 // Debug plugins
-var plumber      = require("gulp-plumber");
+var plumber      = require('gulp-plumber');
 
 // Other plugins
 var concat       = require('gulp-concat');
@@ -46,7 +46,7 @@ gulp.task('css', function() {
 // JS
 gulp.task('js', function() {
 	return gulp.src([
-			source + 'vendor/perfect-scrollbar/js/perfect-scrollbar.js',
+			source + 'vendor/js-cookie/js.cookie.js',
 			source + 'js/main.js'
 		])
 		.pipe(plumber())

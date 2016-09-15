@@ -31,6 +31,3 @@
 }
 
 %icon-email, .icon-email { @extend %icon; &:before { content: "\ea01"; }}
-%icon-github, .icon-github { @extend %icon; &:before { content: "\ea02"; }}
-%icon-stackoverflow, .icon-stackoverflow { @extend %icon; &:before { content: "\ea03"; }}
-%icon-twitter, .icon-twitter { @extend %icon; &:before { content: "\ea04"; }}

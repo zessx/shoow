@@ -1,4 +1,4 @@
-<span class="showtime" data-theater-key="{{ showtime.theater.key }}" title="{{ showtime.theater.name }}">
-    <span class="time">{{ showtime.time }}</span>
-    <span class="version">{{ showtime.version }}</span>
+<span class="showtime" data-toggle-target="t{{ showtime.theater.key }}">
+    <span class="session">{{ showtime.time }} {{ showtime.version }}</span>
+    <span class="theater">{{ showtime.theater.name }}</span>
 </span>

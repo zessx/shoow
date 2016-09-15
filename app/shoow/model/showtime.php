@@ -17,27 +17,39 @@ class Showtime
         if (!($movie instanceof Movie)) {
             throw new \InvalidArgumentException();
         }
-        $this->theater   = $theater;
+        $this->theater = $theater;
         $this->movie   = $movie;
         $this->version = $version;
         $this->time    = $time;
     }
 
-    public function getContent() {
-        return $content;
+    public function getTheater() {
+        return $this->theater;
+    }
+
+    public function getMovie() {
+        return $this->movie;
+    }
+
+    public function getVersion() {
+        return $this->version;
+    }
+
+    public function getTime() {
+        return $this->time;
     }
 
     public function render($output = true) {
         ob_start();
-        include 'template/showtime.tmpl';
+        include TMPL_PATH .'showtime.tmpl';
         $rendering = ob_get_contents();
         ob_end_clean();
 
         $data = array(
-            'showtime.theater.key'  => $this->theater->getKey(),
-            'showtime.theater.name' => $this->theater->getName(),
-            'showtime.version'      => $this->version,
-            'showtime.time'         => $this->time
+            'showtime.theater.key'  => $this->getTheater()->getKey(),
+            'showtime.theater.name' => $this->getTheater()->getName(),
+            'showtime.version'      => $this->getVersion(),
+            'showtime.time'         => $this->getTime()
         );
         foreach ($data as $key => $value) {
             $rendering = preg_replace('/\{\{\s*'. $key .'\s*\}\}/', $value, $rendering);
