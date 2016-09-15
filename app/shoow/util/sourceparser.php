@@ -91,8 +91,8 @@ class SourceParser
         if (!file_exists($poster_path)) {
 
             $curl = curl_init();
-            $search = 'site:allocine.fr '. $movie->getName();
-            curl_setopt($curl, CURLOPT_URL, 'http://www.bing.com/images/search?q='.urlencode($search));
+            $search = 'affiche '. $movie->getName();
+            curl_setopt($curl, CURLOPT_URL, 'http://www.bing.com/images/search?qft=+filterui:aspect-tall&q='.urlencode($search));
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 10);
             $str = curl_exec($curl);
