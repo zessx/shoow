@@ -66,7 +66,11 @@ class Movie
 
     private function getTimeline() {
         $html = '';
-        foreach ($this->showtimes as $showtimes) {
+        $showtimes = $this->showtimes;
+        usort($showtimes, function($a, $b) {
+            return strcmp($a->getTime(), $b->getTime());
+        });
+        foreach ($showtimes as $showtimes) {
             $html .= $showtimes->render(false) . PHP_EOL;
         }
         return $html;
