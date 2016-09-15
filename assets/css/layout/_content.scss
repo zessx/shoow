@@ -82,5 +82,8 @@ main {
         &.disabled {
             display: none;
         }
+        &.completed {
+            opacity: 0.5;
+        }
     }
 }

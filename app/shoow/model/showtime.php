@@ -39,6 +39,17 @@ class Showtime
         return $this->time;
     }
 
+    public function getStatus() {
+        // TODO: started
+        $rtime = strtotime(date('Y-m-d '. $this->getTime() .':00', time()));
+        $now   = time();
+        if ($rtime > $now) {
+            return 'incoming';
+        } else {
+            return 'completed';
+        }
+    }
+
     public function render($output = true) {
         ob_start();
         include TMPL_PATH .'/showtime.tmpl';
@@ -49,7 +60,8 @@ class Showtime
             'showtime.theater.key'  => $this->getTheater()->getKey(),
             'showtime.theater.name' => $this->getTheater()->getName(),
             'showtime.version'      => $this->getVersion(),
-            'showtime.time'         => $this->getTime()
+            'showtime.time'         => $this->getTime(),
+            'showtime.status'       => $this->getStatus()
         );
         foreach ($data as $key => $value) {
             $rendering = preg_replace('/\{\{\s*'. $key .'\s*\}\}/', $value, $rendering);
