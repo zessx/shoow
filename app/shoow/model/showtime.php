@@ -41,7 +41,7 @@ class Showtime
 
     public function render($output = true) {
         ob_start();
-        include TMPL_PATH .'showtime.tmpl';
+        include TMPL_PATH .'/showtime.tmpl';
         $rendering = ob_get_contents();
         ob_end_clean();
 

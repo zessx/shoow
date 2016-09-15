@@ -46,11 +46,11 @@ class Movie
 
     public function getPoster() {
         $poster_name = $this->getId() .'.jpg';
-        $poster_path = PUBLIC_PATH .'images/posters/'. $poster_name;
+        $poster_path = PUBLIC_PATH .'/images/posters/'. $poster_name;
         if (file_exists($poster_path)) {
-            return PUBLIC_URL .'images/posters/'. $poster_name;
+            return PUBLIC_URL .'/images/posters/'. $poster_name;
         }
-        return PUBLIC_URL .'images/posters/default.jpg';
+        return PUBLIC_URL .'/images/posters/default.jpg';
     }
 
     public function getShowtimes() {
@@ -74,7 +74,7 @@ class Movie
 
     public function render($output = true) {
         ob_start();
-        include TMPL_PATH .'movie.tmpl';
+        include TMPL_PATH .'/movie.tmpl';
         $rendering = ob_get_contents();
         ob_end_clean();
 

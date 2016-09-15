@@ -2,11 +2,13 @@
 
 ini_set('include_path', ini_get('include_path') . ':./app/shoow');
 
-require_once('/vendor/simplehtmldom/simple_html_dom.php');
+define('ROOT_PATH',   __DIR__ . '/..');
+define('TMPL_PATH',   __DIR__ . '/shoow/template');
+define('PUBLIC_PATH', ROOT_PATH . '/public');
+define('PUBLIC_URL',  '/public');
 
-define('TMPL_PATH',   __DIR__ . '/shoow/template/');
-define('PUBLIC_PATH', __DIR__ . '/../../public/');
-define('PUBLIC_URL',  '/public/');
+require_once(ROOT_PATH .'/vendor/simplehtmldom/simple_html_dom.php');
+
 
 function autoloader($className){
     $parts = explode('\\', $className);
