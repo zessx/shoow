@@ -1,1 +1,3 @@
 node_modules/*
+public/images/posters/*
+!public/images/posters/default.jpg

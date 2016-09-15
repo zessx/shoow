@@ -38,7 +38,7 @@ class SourceParser
                     preg_match_all('/^(?<duration>\d+h\d+)mn - Classification: (?<public>.+?) - (?<genre>.+?)(‎ - VO st Fr‎)?$/', self::convert($dom_movie->find('.info', 0)->innertext), $minfo);
                     $m = new Movie($mid, $mname, $minfo['public'][0], $minfo['genre'][0], $minfo['duration'][0]);
                     $movies[$mid] = $m;
-                    // self::loadPoster($m);
+                    self::loadPoster($m);
                 }
 
                 $mversions = explode('<br>', $dom_movie->find('.times', 0)->innertext);
@@ -87,25 +87,25 @@ class SourceParser
     }
 
     private static function loadPoster($movie) {
-        $poster_path = PUBLIC_PATH .'images/posters/'. $movie->getId() .'.jpg';
+        $poster_path = PUBLIC_PATH .'/images/posters/'. $movie->getId() .'.jpg';
         if (!file_exists($poster_path)) {
 
             $curl = curl_init();
-            $search = str_replace(' ', '+', 'site:allocine.fr '. $movie->getName());
-            curl_setopt($curl, CURLOPT_URL, 'http://www.bing.com/images/search?count=1&q='.urlencode($search));
-            // curl_setopt($curl, CURLOPT_URL, 'http://www.google.com/search?tbm=isch&q='. $search);
+            $search = 'site:allocine.fr '. $movie->getName();
+            curl_setopt($curl, CURLOPT_URL, 'http://www.bing.com/images/search?q='.urlencode($search));
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 10);
             $str = curl_exec($curl);
             curl_close($curl);
 
-// var_dump($str); die;
             $html = str_get_html($str);
             $url = null;
-            // $url  = $html->find('#b_content img', 0)->src;
-            // $url  = $html->find('img', 0)->src;
+            $url  = $html->find('#b_content img', 0)->src;
             if ($url) {
+                $url = preg_replace('/&w=\d+/', '&w=160', $url);
+                $url = preg_replace('/&h=\d+/', '&w=215', $url);
                 copy($url, $poster_path);
+                die;
             }
 
             $html->clear();
