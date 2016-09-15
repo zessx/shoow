@@ -105,7 +105,6 @@ class SourceParser
                 $url = preg_replace('/&w=\d+/', '&w=160', $url);
                 $url = preg_replace('/&h=\d+/', '&w=215', $url);
                 copy($url, $poster_path);
-                die;
             }
 
             $html->clear();
